@@ -1,72 +1,88 @@
-<section class="py-24 bg-slate-50 reveal" id="contact">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-900">Let's Talk</h2>
-      <p class="mt-4 text-gray-600">
-        Fill out the form below and we'll get back to you within 24 hours.
-      </p>
-    </div>
-
-    <form
-      id="contact-form"
-      class="grid grid-cols-1 gap-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
-    >
-      <div>
-        <label
-          for="full-name"
-          class="block text-sm font-semibold text-gray-900 mb-2"
-          >Full Name</label
-        >
-        <input
-          type="text"
-          name="full-name"
-          id="full-name"
-          required
-          placeholder="John Doe"
-          class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
-        />
-      </div>
-
-      <div>
-        <label
-          for="email"
-          class="block text-sm font-semibold text-gray-900 mb-2"
-          >Email Address</label
-        >
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          placeholder="john@example.com"
-          class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
-        />
-      </div>
-
-      <div>
-        <label
-          for="message"
-          class="block text-sm font-semibold text-gray-900 mb-2">Message</label
-        >
-        <textarea
-          id="message"
-          name="message"
-          rows="4"
-          required
-          placeholder="How can we help you?"
-          class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
-        ></textarea>
-      </div>
-
-      <button
-        type="submit"
-        class="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+<section class="overflow-hidden bg-blue-200/70 reveal" id="contact">
+  <div class="text-center max-w-3xl mx-auto">
+    <div class="inline-flex items-center justify-center mb-6">
+      <div
+        class="w-16 h-16 bg-linear-to-br from-blue-600 to-blue-900 rounded-2xl flex items-center justify-center shadow-lg"
       >
-        Send Message
-      </button>
+        <i class="fas fa-link text-white text-3xl"></i>
+      </div>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+      <span
+        class="bg-linear-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent"
+      >
+        Let's Connect
+      </span>
+    </h2>
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="mt-4 text-gray-600">
+          Fill out the form below and we'll get back to you within 24 hours.
+        </p>
+      </div>
 
-      <p id="form-status" class="hidden text-center font-medium"></p>
-    </form>
+      <form
+        id="contact-form"
+        class="grid grid-cols-1 gap-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
+      >
+        <div>
+          <label
+            for="full-name"
+            class="block text-sm font-semibold text-gray-900 mb-2"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            name="full-name"
+            id="full-name"
+            required
+            placeholder="John Doe"
+            class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
+          />
+        </div>
+
+        <div>
+          <label
+            for="email"
+            class="block text-sm font-semibold text-gray-900 mb-2"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            placeholder="john@example.com"
+            class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
+          />
+        </div>
+
+        <div>
+          <label
+            for="message"
+            class="block text-sm font-semibold text-gray-900 mb-2"
+            >Message</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            placeholder="How can we help you?"
+            class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+        >
+          Send Message
+        </button>
+
+        <p id="form-status" class="hidden text-center font-medium"></p>
+      </form>
+    </div>
   </div>
 </section>
 
