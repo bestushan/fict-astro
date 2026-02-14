@@ -1,6 +1,8 @@
 ---
 // 1. Import the Image component and your specific image file
+
 import { Image } from "astro:assets";
+import herobg from "../assets/images/herobg.png";
 // import heroImage from "../assets/images/herobg.png";
 
 const qualities = [
@@ -53,7 +55,7 @@ const qualities = [
     </video> -->
     <div
       class="w-full h-full absolute inset-0 bg-cover bg-center z-0"
-      style={`background-image: url('src/assets/images/herobg.png');`}
+      style={`background-image: url('${herobg.src}')`}
     >
     </div>
   </div>

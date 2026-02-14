@@ -1,22 +1,28 @@
 ---
 import MaterialIcon from './MaterialIcon.astro';
+import { Image } from 'astro:assets';
+
+// This grabs every .png in that folder
+import visionImg from '../assets/images/vision.png';
+import missionImg from '../assets/images/mission.png';
+import valuesImg from '../assets/images/values.png';
 
 const strategy = [
   {
     title: "Our Vision",
     desc: "To provide innovative technological solutions that enable our clients across the world to deliver their full potential.",
-    imagePath: "/src/assets/images/vision.png"
+    image: visionImg
   },
   {
     title: "Our Mission",
     desc: "Providing reliable, efficient and long term software solutions to increase your performance and competence in the industry.",
-    imagePath: "/src/assets/images/mission.png"
-},
+    image: missionImg
+  },
   {
     title: "Our Edge",
     desc: "We develop models and tools that identify specific requirements and cater to them in the most effective and efficient manner.",
-    imagePath: "src/assets/images/values.png"
-}
+    image: valuesImg
+  }
 ];
 ---
 
@@ -41,7 +47,7 @@ const strategy = [
                 color={item.color} 
                 filled={true} 
               /> */}
-              <img src={item.imagePath} class="h-24 ">
+              <Image src={item.image} alt={item.title} class="h-24 "/>
             </div>
             {/* <img src="/src/assets/images/vision.png" class="h-20"> */}
           </div>
