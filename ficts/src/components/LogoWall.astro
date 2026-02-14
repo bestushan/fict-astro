@@ -1,0 +1,103 @@
+---
+// Divide your 20 logos into two arrays
+const row1 = [
+  { name: "Client 1", logo: "/logos/partners_01.png" },
+  { name: "Client 2", logo: "/logos/partners_02.png" },
+  { name: "Client 1", logo: "/logos/partners_03.png" },
+  { name: "Client 2", logo: "/logos/partners_04.png" },
+  { name: "Client 1", logo: "/logos/partners_05.png" },
+  { name: "Client 2", logo: "/logos/partners_06.png" },
+  { name: "Client 1", logo: "/logos/partners_07.png" },
+  { name: "Client 2", logo: "/logos/partners_08.png" },
+  { name: "Client 1", logo: "/logos/partners_09.png" },
+  { name: "Client 2", logo: "/logos/partners_10.png" },
+  // ... add 8 more
+];
+
+const row2 = [
+  { name: "Client 1", logo: "/logos/partners_11.png" },
+  { name: "Client 2", logo: "/logos/partners_12.png" },
+  { name: "Client 1", logo: "/logos/partners_13.png" },
+  { name: "Client 2", logo: "/logos/partners_14.png" },
+  { name: "Client 1", logo: "/logos/partners_15.png" },
+  { name: "Client 2", logo: "/logos/partners_16.png" },
+  { name: "Client 1", logo: "/logos/partners_17.png" },
+  { name: "Client 2", logo: "/logos/partners_18.png" },
+  { name: "Client 1", logo: "/logos/partners_19.png" },
+  { name: "Client 2", logo: "/logos/partners_20.png" },
+  // ... add 8 more
+];
+---
+
+<section class="py-20 bg-white overflow-hidden reveal">
+  <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+    <h2 class="text-slate-400 font-semibold uppercase tracking-widest text-sm">
+      Trusted by Industry Leaders
+    </h2>
+  </div>
+
+  <div class="flex flex-col gap-8">
+    <!-- Row 1: Scrolling Left -->
+    <div class="flex overflow-hidden group">
+      <div
+        class="flex animate-scroll-left whitespace-nowrap gap-12 py-4 group-hover:[animation-play-state:paused]"
+      >
+        {
+          [...row1, ...row1].map((client) => (
+            <div class="w-40 h-20 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+              <img
+                src={client.logo}
+                alt={client.name}
+                class="max-h-full max-w-full object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Row 2: Scrolling Right -->
+    <div class="flex overflow-hidden group">
+      <div
+        class="flex animate-scroll-right whitespace-nowrap gap-12 py-4 group-hover:[animation-play-state:paused]"
+      >
+        {
+          [...row2, ...row2].map((client) => (
+            <div class="w-40 h-20 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+              <img
+                src={client.logo}
+                alt={client.name}
+                class="max-h-full max-w-full object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .animate-scroll-left {
+    animation: scroll-left 40s linear infinite;
+  }
+  .animate-scroll-right {
+    animation: scroll-right 40s linear infinite;
+  }
+</style>

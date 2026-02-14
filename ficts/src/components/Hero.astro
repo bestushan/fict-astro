@@ -1,0 +1,167 @@
+---
+// 1. Import the Image component and your specific image file
+import { Image } from "astro:assets";
+// import heroImage from "../assets/images/herobg.png";
+
+const qualities = [
+  {
+    title: "Information Systems",
+    desc: "Seamlessly organize, manage, and optimize your business operations.",
+    color: "text-blue-100",
+  },
+  {
+    title: "Web Apps",
+    desc: "Robust, scalable web solutions custom-tailored for your business goals.",
+    color: "text-blue-200",
+  },
+  {
+    title: "Mobile Apps",
+    desc: "Elegant, high-performance apps designed for every device and platform.",
+    color: "text-blue-300",
+  },
+  {
+    title: "Data Analysis",
+    desc: "Transform raw information into actionable insights with advanced analytics.",
+    color: "text-blue-100",
+  },
+  {
+    title: "Digital Marketing",
+    desc: "Amplify your reach and engagement with cutting-edge online strategies.",
+    color: "text-blue-200",
+  },
+  {
+    title: "Graphic Designing",
+    desc: "Captivating visuals and branding for a memorable digital presence.",
+    color: "text-blue-300",
+  },
+  {
+    title: "IT Consultancy",
+    desc: "Expert guidance to unlock new potential and future-proof your technology.",
+    color: "text-blue-300",
+  },
+];
+---
+
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- Dark Overlay to ensure text readability -->
+    <div class="absolute inset-0 bg-black/20 z-10"></div>
+
+    <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
+      <source src="public/videos/herobg.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video> -->
+    <div
+      class="w-full h-full absolute inset-0 bg-cover bg-center z-0"
+      style={`background-image: url('/src/assets/images/herobg.png');`}
+    >
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 w-full text-center items-center">
+    <!-- Text Content -->
+    <!-- <div class="max-w-3xl reveal"> -->
+    <!-- 2. White text for contrast against the video -->
+    <h1
+      class="mt-2 text-5xl md:text-7xl font-black tracking-wide text-white mb-12 leading-16 z-10"
+    >
+      FUTURE ICT SOLUTIONS
+    </h1>
+
+    <h1
+      class="mt-2 text-4xl md:text-6xl font-black tracking-tighter text-white mb-12 leading-16 z-10"
+    >
+      Future-Proofing your <br />
+      <span
+        id="typewriter"
+        class="text-blue-400 italic border-r-4 border-blue-400 pr-2"
+        >Digital Identity.</span
+      >
+    </h1>
+    <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed">
+      Experience the speed of hard-coded performance. Built for 2026, optimized
+      for humans.
+    </p>
+    <div class="gap-4">
+      <a
+        href="#projects"
+        class="inline-block bg-blue-400 hover:bg-blue-300 hover:-translate-y-1 text-emerald-950 font-bold py-4 rounded-lg shadow-lg active:scale-95 text-center transition-all duration-300 ease-out text-lg px-8"
+      >
+        View Projects
+      </a>
+    </div>
+    <!-- </div> -->
+
+    <!-- 2. The Optimized Hero Image -->
+    <!-- <div class="reveal relative lg:h-[600px]" style="animation-delay: 200ms;">-->
+    <!-- Decorative Background Blur (Modern Effect) -->
+    <!-- <div
+        class="absolute -top-20 -right-20 w-72 h-72 bg-purple-200 rounded-full blur-[120px] opacity-50 -z-10"
+      >
+      </div> -->
+  </div>
+  <!-- 
+      <div
+        class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white"
+      >
+        <Image
+          src={heroImage}
+          alt="Modern Agency Dashboard"
+          width={1200}
+          height={1200}
+          loading="eager"
+          class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
+        />
+      </div> -->
+</section>
+<script>
+  const words = [
+    "Digital Value",
+    "Fast Performance",
+    "Future Brands",
+    "AI Solutions",
+  ];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typeSpeed = 150;
+  const deleteSpeed = 75;
+  const pauseTime = 2000; // How long to stay on a completed word
+
+  function type() {
+    const target = document.getElementById("typewriter");
+    if (!target) return;
+
+    const currentWord = words[wordIndex];
+
+    if (isDeleting) {
+      target.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      target.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let nextSpeed = isDeleting ? deleteSpeed : typeSpeed;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      nextSpeed = pauseTime;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      nextSpeed = 500;
+    }
+
+    setTimeout(type, nextSpeed);
+  }
+
+  // Start the effect
+  document.addEventListener("DOMContentLoaded", type);
+</script>
+
+<style>
+  /* This creates the blinking cursor effect */
+  #typewriter {
+    animation: blink 0.8s step-end infinite;
+  }
+</style>

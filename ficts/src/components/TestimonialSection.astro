@@ -1,0 +1,91 @@
+---
+// src/components/TestimonialSection.astro
+import TestimonialCard from "./TestimonialCard.astro";
+
+const testimonials = [
+  {
+    name: "Saman Kumara",
+    role: "CEO",
+    company: "TechLanka",
+    content:
+      "Future ICT Solutions transformed our legacy systems into a modern cloud powerhouse. Their 2017 roots show in their deep expertise.",
+  },
+  {
+    name: "Priya Silva",
+    role: "Product Manager",
+    company: "NextGen",
+    content:
+      "Reliable, innovative, and consistent. They didn't just build a tool; they built a solution that fits our global mission.",
+  },
+  {
+    name: "John Doe",
+    role: "Founder",
+    company: "StartupX",
+    content:
+      "The best tech partner in the region. Their attention to detail and efficiency is unmatched.",
+  },
+  // Add 4-5 more for a better scroll effect
+];
+---
+
+<section class="py-24 bg-slate-50 relative overflow-hidden reveal">
+  <!-- Subtle Background Textures -->
+  <div
+    class="absolute top-0 left-0 w-full h-full bg-texture opacity-30 pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 mb-16 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <h2
+          class="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4"
+        >
+          Wall of Love
+        </h2>
+        <h3
+          class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+        >
+          Trusted by innovators <br />
+          <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600"
+            >across the globe.</span
+          >
+        </h3>
+      </div>
+      <p class="text-slate-500 max-w-sm mb-2">
+        See how Future ICT Solutions is empowering businesses to reach their
+        full potential.
+      </p>
+    </div>
+  </div>
+
+  <!-- The Infinite Scroll Container -->
+  <div class="flex overflow-hidden group py-10">
+    <div
+      class="flex animate-marquee gap-8 group-hover:[animation-play-state:paused]"
+    >
+      {/* Duplicate the array to create the infinite loop effect */}
+      {
+        [...testimonials, ...testimonials].map((t) => (
+          <TestimonialCard {...t} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 1rem));
+    }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+    width: max-content;
+  }
+</style>

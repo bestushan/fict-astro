@@ -1,0 +1,57 @@
+---
+import MaterialIcon from './MaterialIcon.astro';
+
+const strategy = [
+  {
+    title: "Our Vision",
+    desc: "To provide innovative technological solutions that enable our clients across the world to deliver their full potential.",
+    imagePath: "/src/assets/images/vision.png"
+  },
+  {
+    title: "Our Mission",
+    desc: "Providing reliable, efficient and long term software solutions to increase your performance and competence in the industry.",
+    imagePath: "/src/assets/images/mission.png"
+},
+  {
+    title: "Our Edge",
+    desc: "We develop models and tools that identify specific requirements and cater to them in the most effective and efficient manner.",
+    imagePath: "/src/assets/images/values.png"
+}
+];
+---
+
+<!-- 
+  Ensure Material Symbols font is loaded. 
+  This can be placed in the Layout.astro <head>. 
+  But for isolation and debugging, we include here.
+-->
+
+<section class="py-24 bg-white bg-texture relative overflow-hidden reveal">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {strategy.map((item) => (
+        <div class="group p-10 rounded-[2.5rem] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+          
+          <!-- Icon Container with MaterialIcon -->
+          <div class="mb-2 flex justify-center">
+            <div class={`p-0 rounded-2xl group-hover:scale-110 transition-transform duration-500`}>
+              {/* <MaterialIcon 
+                name={item.iconName} 
+                size="text-7xl" 
+                color={item.color} 
+                filled={true} 
+              /> */}
+              <img src={item.imagePath} class="h-24 ">
+            </div>
+            {/* <img src="/src/assets/images/vision.png" class="h-20"> */}
+          </div>
+          
+          <h4 class="text-4xl md:text-5xl font-bold text-blue-400 mb-4 text-center">{item.title}</h4>
+          <p class="text-slate-600 leading-relaxed text-justify text-base">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

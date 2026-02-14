@@ -1,0 +1,94 @@
+---
+const stats = [
+  { label: "Founded In", value: "2017", suffix: "" },
+  { label: "Projects Completed", value: "150", suffix: "+" },
+  { label: "Expert Developers", value: "25", suffix: "+" },
+  { label: "Global Clients", value: "10", suffix: "+" },
+];
+---
+
+<!-- <section class="bg-slate-900 py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {
+        stats.map((stat) => (
+          <div class="text-center group">
+            <div class="text-4xl md:text-5xl font-extrabold text-white mb-2 group-hover:text-blue-400 transition-colors">
+              {stat.value}
+              <span class="text-blue-500">{stat.suffix}</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">
+              {stat.label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section> -->
+
+
+<section class="bg-slate-900 py-16 reveal">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center group">
+          <!-- Note: We start the text at 0 and store the final number in data-target -->
+          <div>
+          <span
+            class="stat-number text-4xl md:text-5xl font-extrabold text-white mb-2 group-hover:text-blue-400 transition-colors"
+            data-target={stat.value}
+          >
+            0
+          </span>
+          <span class="text-blue-500 text-4xl md:text-5xl font-extrabold">{stat.suffix}</span>
+          </div>
+          <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function animateValue(obj: HTMLElement, start: number, end: number, duration: number) {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start).toString();
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Intersection Observer to trigger when visible
+  const observerOptions = {
+    threshold: 0.5, // Trigger when 50% of the section is visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.stat-number');
+        stats.forEach((stat) => {
+          const target = parseInt(stat.getAttribute('data-target') || "0");
+          // FoundIn (2017) should probably count faster or start closer
+          const duration = target > 1000 ? 1000 : 2000;
+          animateValue(stat as HTMLElement, 0, target, duration);
+        });
+        // Stop observing once the animation is triggered
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Target the whole section
+  const section = document.querySelector('.bg-slate-900');
+  if (section) observer.observe(section);
+</script>
+

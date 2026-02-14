@@ -1,0 +1,324 @@
+---
+import BentoServiceCard from "../components/BentoServiceCard.astro";
+
+interface Service {
+  title: string;
+  description: string;
+  longDescription: string;
+  icon: string;
+  gradient: string;
+  features: string[];
+  technologies: string[];
+  link: string;
+  size: "small" | "medium" | "large" | "wide" | "tall";
+}
+
+// Enhanced services data with detailed information
+const services: Service[] = [
+  {
+    title: "Web Development",
+    description: "Custom web applications with modern tech",
+    longDescription:
+      "End-to-end web development services using cutting-edge technologies. We build responsive, performant, and scalable web solutions that drive business growth.",
+    icon: "fa-code",
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "React/Vue/Angular",
+      "Node.js/Python",
+      "Progressive Web Apps",
+      "E-commerce Solutions",
+    ],
+    technologies: ["React", "Vue", "Node.js", "TypeScript", "GraphQL"],
+    link: "/services/web-development",
+    size: "medium",
+  },
+  {
+    title: "Mobile Apps",
+    description: "Native & cross-platform mobile solutions",
+    longDescription:
+      "Create stunning mobile experiences for iOS and Android. From concept to app store deployment, we deliver high-performance mobile applications.",
+    icon: "fa-mobile-alt",
+    gradient: "from-purple-600 to-pink-600",
+    features: [
+      "iOS & Android",
+      "React Native/Flutter",
+      "App Store Optimization",
+      "Push Notifications",
+    ],
+    technologies: ["Swift", "Kotlin", "React Native", "Flutter", "Firebase"],
+    link: "/services/mobile-development",
+    size: "wide", // Takes 2 columns
+  },
+  {
+    title: "UI/UX Design",
+    description: "User-centered design solutions",
+    longDescription:
+      "Transform your ideas into beautiful, intuitive interfaces. Our design process ensures optimal user experience and engagement.",
+    icon: "fa-paint-brush",
+    gradient: "from-green-600 to-teal-600",
+    features: [
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Usability Testing",
+    ],
+    technologies: ["Figma", "Adobe XD", "Sketch", "InVision"],
+    link: "/services/ui-ux-design",
+    size: "small",
+  },
+  {
+    title: "Cloud Solutions",
+    description: "Scalable cloud infrastructure",
+    longDescription:
+      "Leverage the power of cloud computing. We design, deploy, and manage scalable cloud solutions on major platforms.",
+    icon: "fa-cloud",
+    gradient: "from-yellow-600 to-orange-600",
+    features: [
+      "AWS/Azure/GCP",
+      "Serverless",
+      "Microservices",
+      "Cloud Migration",
+    ],
+    technologies: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+    link: "/services/cloud-solutions",
+    size: "tall", // Takes 2 rows
+  },
+  {
+    title: "DevOps",
+    description: "Automation & CI/CD pipelines",
+    longDescription:
+      "Streamline your development and operations with modern DevOps practices. Achieve faster deployment and better reliability.",
+    icon: "fa-cogs",
+    gradient: "from-red-600 to-rose-600",
+    features: [
+      "CI/CD Pipelines",
+      "Infrastructure as Code",
+      "Monitoring",
+      "Containerization",
+    ],
+    technologies: [
+      "Jenkins",
+      "GitHub Actions",
+      "Docker",
+      "Kubernetes",
+      "Ansible",
+    ],
+    link: "/services/devops",
+    size: "medium",
+  },
+  {
+    title: "E-commerce",
+    description: "Custom online stores & marketplaces",
+    longDescription:
+      "Build powerful e-commerce platforms that convert. From Shopify to custom solutions, we create seamless shopping experiences.",
+    icon: "fa-shopping-cart",
+    gradient: "from-emerald-600 to-cyan-600",
+    features: [
+      "Payment Integration",
+      "Inventory Management",
+      "Shopping Cart",
+      "Analytics",
+    ],
+    technologies: ["Shopify", "WooCommerce", "Magento", "Stripe", "PayPal"],
+    link: "/services/ecommerce",
+    size: "medium",
+  },
+  {
+    title: "AI & ML",
+    description: "Intelligent solutions for your business",
+    longDescription:
+      "Harness the power of artificial intelligence. We build custom ML models and AI solutions that give you a competitive edge.",
+    icon: "fa-brain",
+    gradient: "from-indigo-600 to-blue-600",
+    features: [
+      "Machine Learning",
+      "Natural Language Processing",
+      "Computer Vision",
+      "Predictive Analytics",
+    ],
+    technologies: ["TensorFlow", "PyTorch", "OpenAI", "LangChain"],
+    link: "/services/ai-ml",
+    size: "large", // Takes 2x2 grid
+  },
+  {
+    title: "Cybersecurity",
+    description: "Protect your digital assets",
+    longDescription:
+      "Comprehensive security solutions to protect your business from cyber threats. We ensure your data and systems are secure.",
+    icon: "fa-shield-alt",
+    gradient: "from-slate-600 to-gray-600",
+    features: [
+      "Security Audits",
+      "Penetration Testing",
+      "Compliance",
+      "Threat Monitoring",
+    ],
+    technologies: ["OWASP", "Kali Linux", "Wireshark", "Metasploit"],
+    link: "/services/cybersecurity",
+    size: "small",
+  },
+  {
+    title: "IT Consulting",
+    description: "Strategic technology guidance",
+    longDescription:
+      "Expert IT consulting to help you make informed technology decisions and drive digital transformation.",
+    icon: "fa-lightbulb",
+    gradient: "from-amber-600 to-orange-600",
+    features: [
+      "Digital Strategy",
+      "Technology Assessment",
+      "Process Optimization",
+      "Change Management",
+    ],
+    technologies: ["Agile", "Scrum", "ITIL", "TOGAF"],
+    link: "/services/consulting",
+    size: "medium",
+  },
+  {
+    title: "Digital Marketing",
+    description: "Grow your online presence",
+    longDescription:
+      "Comprehensive digital marketing strategies to increase visibility, engage customers, and drive growth.",
+    icon: "fa-chart-line",
+    gradient: "from-violet-600 to-purple-600",
+    features: ["SEO", "Content Marketing", "Social Media", "Analytics"],
+    technologies: ["Google Analytics", "SEMrush", "HubSpot", "Mailchimp"],
+    link: "/services/seo-marketing",
+    size: "wide", // Takes 2 columns
+  },
+];
+---
+
+<section
+  class="relative py-24 overflow-hidden bg-linear-to-b from-gray-50 to-white"
+>
+  {/* Background decoration */}
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-20 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
+    >
+    </div>
+    <div
+      class="absolute top-40 right-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"
+    >
+    </div>
+    <div
+      class="absolute bottom-20 left-20 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"
+    >
+    </div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <div class="inline-flex items-center justify-center mb-6">
+        <div
+          class="w-20 h-20 bg-linear-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform"
+        >
+          <i class="fas fa-th-large text-white text-3xl"></i>
+        </div>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span
+          class="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+        >
+          Interactive Services
+        </span>
+      </h2>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        Click on any card to flip and discover detailed information about our
+        services. Experience our offerings in this dynamic bento grid layout.
+      </p>
+    </div>
+
+    {/* Bento Grid */}
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px] lg:auto-rows-[220px]"
+    >
+      {
+        services.map((service, index) => (
+          <BentoServiceCard
+            title={service.title}
+            description={service.description}
+            longDescription={service.longDescription}
+            icon={service.icon}
+            gradient={service.gradient}
+            features={service.features}
+            technologies={service.technologies}
+            link={service.link}
+            size={service.size}
+            delay={index * 100}
+          />
+        ))
+      }
+    </div>
+
+    {/* Instructions */}
+    <div class="flex justify-center mt-12 space-x-8 text-sm text-gray-500">
+      <div class="flex items-center">
+        <div
+          class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2"
+        >
+          <i class="fas fa-mouse-pointer text-blue-600"></i>
+        </div>
+        <span>Click cards to flip</span>
+      </div>
+      <div class="flex items-center">
+        <div
+          class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-2"
+        >
+          <i class="fas fa-sync-alt text-purple-600"></i>
+        </div>
+        <span>Discover details</span>
+      </div>
+      <div class="flex items-center">
+        <div
+          class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-2"
+        >
+          <i class="fas fa-expand-alt text-indigo-600"></i>
+        </div>
+        <span>Dynamic sizing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    33% {
+      transform: translateY(-30px) scale(1.1);
+    }
+    66% {
+      transform: translateY(30px) scale(0.9);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

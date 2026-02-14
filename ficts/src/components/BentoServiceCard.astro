@@ -1,0 +1,214 @@
+---
+// 1. Remove the 'astro:schema' import entirely.
+
+// 2. Define your Props interface for TypeScript support (optional but recommended)
+interface Props {
+  title: string;
+  description: string;
+  icon?: string; // Optional prop
+  longDescription?: string;
+  features?: string[];
+  technologies?: string[];
+  link?: string;
+  gradient?: string;
+  delay?: number;
+  size?: "small" | "medium" | "large" | "wide" | "tall";
+}
+
+// 3. Destructure and set default values directly from Astro.props
+const {
+  title,
+  description,
+  icon,
+  longDescription,
+  features = [],
+  technologies = [],
+  link = "#",
+  gradient = "from-blue-600 to-indigo-600",
+  delay = 0,
+  size = "medium",
+} = Astro.props;
+
+// 4. Grid span mapping
+const gridSpan = {
+  small: "col-span-1 row-span-1",
+  medium: "col-span-1 row-span-1",
+  large: "col-span-2 row-span-2",
+  wide: "col-span-2 row-span-1",
+  tall: "col-span-1 row-span-2",
+}[size];
+
+// 5. Icon size mapping
+const iconSizes = {
+  small: "w-10 h-10 text-xl",
+  medium: "w-14 h-14 text-2xl",
+  large: "w-16 h-16 text-3xl",
+}[size === "wide" || size === "tall" ? "medium" : size]; // Fallback for extra sizes
+---
+
+<div
+  class={`group ${gridSpan} relative perspective-1000`}
+  data-card
+  data-size={size}
+  style={`transition-delay: ${delay}ms`}
+>
+  {/* Card container with 3D effect */}
+  <div
+    class="relative w-full h-full preserve-3d transition-all duration-700 cursor-pointer"
+    onclick="this.classList.toggle('rotate-y-180')"
+    ontouchstart="this.classList.toggle('rotate-y-180')"
+  >
+    {/* Front of card */}
+    <div class="absolute inset-0 backface-hidden">
+      <div
+        class="h-full bg-white rounded-3xl p-6 border border-gray-100/80 shadow-lg hover:shadow-2xl transition-all duration-500"
+      >
+        {/* Gradient overlay */}
+        <div
+          class="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50/50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+        </div>
+
+        {/* Content */}
+        <div class="relative z-10 h-full flex flex-col">
+          {/* Icon */}
+          <div
+            class={`${iconSizes} mb-4 rounded-2xl bg-linear-to-br ${gradient} bg-opacity-10 flex items-center justify-center text-white shadow-lg`}
+          >
+            <div
+              class="absolute inset-0 bg-white rounded-2xl opacity-90 group-hover:opacity-80 transition-opacity"
+            >
+            </div>
+            <i
+              class={`fas ${icon} relative text-gray-800 group-hover:text-gray-900 transition-colors text-2xl`}
+            ></i>
+          </div>
+
+          {/* Title */}
+          <h3
+            class="text-lg font-bold text-gray-900 mb-2 group-hover:text-gray-900"
+          >
+            {title}
+          </h3>
+
+          {/* Short Description */}
+          <p class="text-gray-600 text-sm leading-relaxed mb-4 grow">
+            {description}
+          </p>
+
+          {/* Click hint */}
+          <div class="flex items-center text-xs text-gray-400 mt-auto">
+            <i class="fas fa-sync-alt mr-1"></i>
+            <span>Click to flip</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Back of card - Detailed view */}
+    <div class="absolute inset-0 backface-hidden rotate-y-180 overflow-y-auto">
+      <div
+        class={`h-full bg-linear-to-br ${gradient} rounded-3xl p-6 text-white shadow-xl`}
+      >
+        <div class="relative z-10 h-full flex flex-col">
+          {/* Back header */}
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm mr-3"
+              >
+                <i class={`fas ${icon} text-white text-xl`}></i>
+              </div>
+              <h3 class="text-lg font-bold">{title}</h3>
+            </div>
+            <button
+              class="text-white/80 hover:text-white transition-colors"
+              onclick="event.stopPropagation(); this.closest('[data-card]').classList.toggle('rotate-y-180')"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          {/* Long description */}
+          <p class="text-sm text-white/90 mb-4">
+            {longDescription || description}
+          </p>
+
+          {/* Features list */}
+          {
+            features.length > 0 && (
+              <div class="mb-4">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-white/70 mb-2">
+                  Key Features
+                </h4>
+                <ul class="space-y-1">
+                  {features.map((feature) => (
+                    <li class="flex items-start text-xs">
+                      <i class="fas fa-check-circle text-white/80 mt-0.5 mr-2 text-xs" />
+                      <span class="text-white/90">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          {/* Technologies */}
+          {
+            technologies.length > 0 && (
+              <div class="mb-4">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-white/70 mb-2">
+                  Technologies
+                </h4>
+                <div class="flex flex-wrap gap-1">
+                  {technologies.map((tech) => (
+                    <span class="px-2 py-1 bg-white/20 rounded-full text-xs backdrop-blur-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {/* CTA Button */}
+          <div class="mt-auto pt-4">
+            <a
+              href={link}
+              class="inline-flex items-center text-sm font-semibold text-white hover:underline group/link"
+              onclick="event.stopPropagation()"
+            >
+              Learn More
+              <i
+                class="fas fa-arrow-right ml-2 group-hover/link:translate-x-1 transition-transform"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .rotate-y-180 .backface-hidden {
+    backface-visibility: hidden;
+  }
+</style>

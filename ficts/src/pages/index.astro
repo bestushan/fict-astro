@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/Contact.astro";
+import Hero from "../components/Hero.astro";
+import ServiceSection from "../components/ServiceSection.astro";
+import About from "../components/About.astro";
+import Stats from "../components/Stats.astro";
+import CompanyStrategy from "../components/CompanyStrategy.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import LogoWall from "../components/LogoWall.astro";
+import BentoGridSection from "../components/BentoGridSection.astro";
+import TestimonialSection from "../components/TestimonialSection.astro";
+
+const clientName = "FICT Solutions";
+const primaryColor = "bg-emerald-950"; // Deep Forest Green
+const accentColor = "text-yellow-400"; // Gold
+// 1. Automatically find all images in that folder
+const images = import.meta.glob("/src/images/*.{jpeg,jpg,png,gif,avif}");
+---
+
+<!doctype html>
+<html lang="en" class="bg-white dark:bg-emerald-950 min-h-screen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FICT Solutions - Web Design Agency</title>
+    <!-- Inter Font CDN -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      html {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <Layout title="TechNova Solutions | Web Design Agency">
+      <!-- Navigation Bar -->
+      <Navbar />
+      <!-- Hero Section -->
+      <Hero />
+
+      <!-- 1. The Narrative Section -->
+      <section id="about">
+        <About>
+          <div slot="left-side">
+            <h2
+              class="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4"
+            >
+              Established 2017
+            </h2>
+            <h3 class="text-4xl font-extrabold text-slate-900 mb-6">
+              Future Information and Communication Technological Solutions
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Began as a small business start-up, **Future ICT Solutions** has
+              succeeded in developing models and tools that identify our
+              clients' specific requirements.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              We strive constantly to upgrade and fine-tune our methodologies to
+              remain in line with local and worldwide business trends. This
+              represents our main competitive edge.
+            </p>
+          </div>
+
+          <div slot="right-side" class="relative group">
+            <div
+              class="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"
+            >
+            </div>
+            <div
+              class="relative bg-white rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <!-- Replace with an actual office or team photo -->
+              <img
+                src="https://images.unsplash.com"
+                alt="Future ICT Solutions Team"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </About>
+        <Stats />
+
+        <!-- 2. The Vision/Mission Grid -->
+        <CompanyStrategy />
+      </section>
+
+      <ServiceSection />
+
+      <TestimonialSection />
+      <LogoWall />
+
+      <Contact />
+    </Layout>
+  </body>
+</html>

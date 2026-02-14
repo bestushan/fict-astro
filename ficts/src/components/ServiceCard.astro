@@ -1,0 +1,82 @@
+---
+// Define enhanced props
+const {
+  title,
+  description,
+  icon,
+  link = "#",
+  gradient = "from-blue-600 to-indigo-600",
+  delay = 0,
+} = Astro.props;
+
+// Icon size variants
+const iconSizes = {
+  small: "w-10 h-10 text-xl",
+  medium: "w-14 h-14 text-2xl",
+  large: "w-16 h-16 text-3xl",
+};
+
+const iconSize =
+  iconSizes[(Astro.props.size as keyof typeof iconSizes) || "medium"];
+---
+
+<div
+  class="group relative bg-white rounded-3xl p-8 border border-gray-100/80 hover:border-transparent shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 reveal"
+  style={`transition-delay: ${delay}ms`}
+>
+  {/* Gradient overlay on hover */}
+  <div class="bg-linear-to-br from-blue-500 to-indigo-500/50 rounded-3xl"></div>
+
+  {/* Content */}
+  <div class="relative z-10">
+    {/* Icon with gradient background - Font Awesome */}
+    <div
+      class={`${iconSize} mb-6 rounded-2xl bg-linear-to-br ${gradient} flex items-center justify-center shadow-lg`}
+    >
+      <div
+        class="rounded-2xl opacity-90 group-hover:opacity-80 transition-opacity"
+      >
+      </div>
+      <i
+        class={`fas ${icon} relative text-gray-800 group-hover:text-gray-900 transition-colors`}
+      ></i>
+    </div>
+
+    {/* Title */}
+    <h3
+      class="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-900 transition-colors"
+    >
+      {title}
+    </h3>
+
+    {/* Description */}
+    <p
+      class="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 transition-colors"
+    >
+      {description}
+    </p>
+
+    {/* Learn more link with animated arrow */}
+    <a
+      href={link}
+      class="inline-flex items-center text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors group/link"
+    >
+      <span class="relative">
+        Learn More
+        <span
+          class="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-blue-600 to-indigo-600 group-hover/link:w-full transition-all duration-300"
+        ></span>
+      </span>
+      <i
+        class="fas fa-arrow-right ml-2 group-hover/link:translate-x-1 transition-transform duration-300"
+      ></i>
+    </a>
+  </div>
+
+  {/* Decorative corner accent */}
+  <div
+    class="absolute top-6 right-6 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+  >
+    <i class="fas fa-circle text-blue-200 text-3xl"></i>
+  </div>
+</div>

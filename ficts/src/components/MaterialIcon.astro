@@ -1,0 +1,20 @@
+---
+const { name, size = "text-2xl", color = "text-current" } = Astro.props;
+
+// Map common Tailwind sizes to their numeric pixel values for optical scaling
+const sizeMap: Record<string, number> = {
+  "text-sm": 20,
+  "text-base": 24,
+  "text-2xl": 24,
+  "text-5xl": 48,
+  "text-7xl": 72,
+};
+const opszValue = sizeMap[size] || 72;
+---
+
+<span
+  class={`material-symbols-outlined ${size} ${color}`}
+  style={`font-variation-settings: 'opsz' ${opszValue};`}
+>
+  {name}
+</span>

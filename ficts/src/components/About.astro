@@ -1,0 +1,173 @@
+---
+const qualities = [
+  {
+    title: "Information Systems",
+    desc: "Seamlessly organize, manage, and optimize your business operations.",
+    color: "text-blue-100",
+  },
+  {
+    title: "Web Apps",
+    desc: "Robust, scalable web solutions custom-tailored for your business goals.",
+    color: "text-blue-200",
+  },
+  {
+    title: "Mobile Apps",
+    desc: "Elegant, high-performance apps designed for every device and platform.",
+    color: "text-blue-300",
+  },
+  {
+    title: "Data Analysis",
+    desc: "Transform raw information into actionable insights with advanced analytics.",
+    color: "text-blue-100",
+  },
+  {
+    title: "Digital Marketing",
+    desc: "Amplify your reach and engagement with cutting-edge online strategies.",
+    color: "text-blue-200",
+  },
+  {
+    title: "Graphic Designing",
+    desc: "Captivating visuals and branding for a memorable digital presence.",
+    color: "text-blue-300",
+  },
+  {
+    title: "IT Consultancy",
+    desc: "Expert guidance to unlock new potential and future-proof your technology.",
+    color: "text-blue-300",
+  },
+];
+---
+
+
+<section class="py-24 overflow-hidden bg-blue-200/70 reveal">
+    <canvas id="dotCanvas" class="absolute inset-0 z-0 pointer-events-none "
+    ></canvas>
+  <div class="max-w-7xl mx-auto px-6">
+    <h1
+    class="text-blue-600 font-extrabold tracking-tight text-5xl md:text-7xl mb-6 text-center"
+  >
+    Who We Are
+  </h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Side: Content -->
+      <div class="space-y-8">
+        <div>
+
+          <h3
+            class="text-3xl font-bold text-gray-900 sm:text-4xl leading-tight"
+          >
+            We bridge the gap between <span class="text-blue-600">Vision</span> and
+            <span class="text-blue-600">Reality</span>.
+          </h3>
+        </div>
+
+        <p class="text-lg text-gray-600 leading-relaxed">
+          At FICT Solutions, we don't just build websites; we engineer digital
+          growth. With a team of modern developers and creative designers, we’ve
+          helped 50+ businesses scale their digital presence using cutting-edge
+          technology.
+        </p>
+
+        <!-- Feature List -->
+        <ul class="space-y-4">
+          {
+            [
+              "Innovative Design",
+              "Scalable Architecture",
+              "SEO-First Approach",
+            ].map((item) => (
+              <li class="flex items-center text-gray-700 font-medium">
+                <span class="mr-3 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-blue-600 text-xs">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- <div class="pt-2">
+          <a
+            href="#contact"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all"
+          >
+            Our Story
+          </a>
+        </div> -->
+      </div>
+
+      <!-- Right Side: The Placeholder for Your Next Section -->
+      <div class="relative h-[400px] flex items-center">
+        <!-- Background Decorative Glow -->
+        <div class="absolute inset-0 bg-blue-400/50 rounded-[40px] blur-xl -z-10 animate-pulse"></div>
+  
+        <div class="w-full flex items-center justify-center relative">
+          {qualities.map((item, index) => (
+            <div 
+              class={`quality-card absolute flex flex-col justify-center items-center min-w-[360px] max-w-lg px-16 py-14 bg-blue-900/80 backdrop-blur-sm border border-gray-900/10 shadow-2xl rounded-3xl transition-all duration-700 ease-out opacity-0 translate-y-8 ${index === 0 ? 'opacity-100 translate-y-0 z-20' : 'z-10'}`}
+              data-index={index}
+            >
+              <span class={`text-base font-black uppercase tracking-[0.2em] mb-4 ${item.color}`}>
+                Our Expertise 0{index + 1}
+              </span>
+              <h2 class="text-5xl md:text-6xl font-bold text-blue-300 mb-6 text-center text-shadow-blue-950 text-shadow-xs">{item.title}</h2>
+              <p class="text-xl text-gray-100 leading-relaxed text-center">{item.desc}</p>
+              
+              <!-- Progress Bar -->
+              <div class="mt-12 h-3 w-4/5 bg-blue-200/60 rounded-full overflow-hidden shadow-inner">
+                 <div class="progress-bar h-full bg-linear-to-r from-blue-200 to-blue-500 w-0 transition-all duration-300"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+    let currentIndex = 0;
+    const cards = document.querySelectorAll('.quality-card');
+    const total = cards.length;
+  
+    function rotateCards() {
+      // Hide current card
+      cards[currentIndex].classList.remove('opacity-100', 'translate-y-0', 'z-20');
+      cards[currentIndex].classList.add('opacity-0', 'translate-y-8', 'z-10');
+      
+      // Move to next
+      currentIndex = (currentIndex + 1) % total;
+  
+      // Show next card
+      cards[currentIndex].classList.remove('opacity-0', 'translate-y-8', 'z-10');
+      cards[currentIndex].classList.add('opacity-100', 'translate-y-0', 'z-20');
+  
+      // Reset and start progress bar
+      resetProgressBar();
+    }
+  
+    function resetProgressBar() {
+      const bars = document.querySelectorAll('.progress-bar');
+      bars.forEach(bar => (bar as HTMLElement).style.width = '0%');
+      
+      const activeBar = cards[currentIndex].querySelector('.progress-bar') as HTMLElement;
+      activeBar.animate([
+        { width: '0%' },
+        { width: '100%' }
+      ], { duration: 3000, iterations: 1 });
+    }
+  
+    // Initialize
+    resetProgressBar();
+    setInterval(rotateCards, 3000);  
+
+  
+    // Start the effect
+    // document.addEventListener('DOMContentLoaded');
+  </script>
+
+    <style>      
+        @keyframes blink {
+          from, to { border-color: transparent }
+          50% { border-color: blue; } /* Tailwind indigo-600 */
+        }
+      </style>

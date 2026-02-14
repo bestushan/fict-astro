@@ -1,0 +1,102 @@
+---
+const currentYear = new Date().getFullYear();
+
+const links = [
+  {
+    header: "Company",
+    items: ["About Us", "Services", "Portfolio", "Careers"],
+  },
+  {
+    header: "Support",
+    items: ["Contact", "Privacy Policy", "Terms of Use", "FAQ"],
+  },
+];
+
+const socialLinks = [
+  { name: "Facebook", url: "#", icon: "fa-facebook" },
+  { name: "Twitter", url: "#", icon: "fa-twitter" },
+  { name: "LinkedIn", url: "#", icon: "fa-linkedin" },
+  { name: "Instagram", url: "#", icon: "fa-instagram" },
+];
+---
+
+<footer class="bg-slate-950 text-slate-300 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <!-- Brand Column -->
+      <div class="col-span-1 md:col-span-1">
+        <a
+          href="/"
+          class="text-white text-2xl font-bold tracking-tight mb-4 block"
+        >
+          FICT<span class="text-blue-500">Solutions</span>
+        </a>
+        <p class="text-sm leading-relaxed mb-6">
+          Crafting modern digital solutions for forward-thinking businesses.
+          Let's build something great together.
+        </p>
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          {
+            socialLinks.map((social) => (
+              <a
+                href={social.url}
+                class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center hover:bg-blue-300 hover:text-white transition-colors"
+              >
+                <span class="text-xs font-bold">
+                  {" "}
+                  <i
+                    class={`fa-brands ${social.icon} text-2xl relative text-gray-800 group-hover:text-gray-900 transition-colors`}
+                  />
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Link Columns -->
+      {
+        links.map((group) => (
+          <div>
+            <h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-sm">
+              {group.header}
+            </h4>
+            <ul class="space-y-4">
+              {group.items.map((item) => (
+                <li>
+                  <a href="#" class="hover:text-blue-400 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <!-- Contact/Newsletter Column -->
+      <div>
+        <h4
+          class="text-white font-semibold mb-6 uppercase tracking-wider text-sm"
+        >
+          Get in Touch
+        </h4>
+        <p class="text-sm mb-4">Have a project in mind?</p>
+        <a
+          href="mailto:hello@fictsolutions.com"
+          class="text-blue-400 font-medium hover:underline"
+        >
+          hello@fictsolutions.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div
+      class="border-t border-slate-900 pt-8 justify-between items-center text-xs text-center"
+    >
+      <p>&copy; {currentYear} FICT Solutions. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

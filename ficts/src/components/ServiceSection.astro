@@ -1,0 +1,254 @@
+---
+import ServiceCard from "../components/ServiceCard.astro";
+
+// Services data based on fictsolutions.com - using Font Awesome icons
+const services = [
+  {
+    title: "Web Development",
+    description:
+      "Custom web applications built with modern technologies like React, Vue, Astro, and Node.js. Responsive, performant, and scalable solutions.",
+    icon: "fa-code",
+    gradient: "from-blue-600 to-indigo-600",
+    link: "/services/web-development",
+  },
+  {
+    title: "Mobile App Development",
+    description:
+      "Native and cross-platform mobile apps for iOS and Android using React Native, Flutter, or Swift/Kotlin. Seamless user experiences.",
+    icon: "fa-mobile-alt",
+    gradient: "from-purple-600 to-pink-600",
+    link: "/services/mobile-development",
+  },
+  {
+    title: "UI/UX Design",
+    description:
+      "User-centered design solutions that combine aesthetics with functionality. Wireframing, prototyping, and user testing.",
+    icon: "fa-paint-brush",
+    gradient: "from-green-600 to-teal-600",
+    link: "/services/ui-ux-design",
+  },
+  {
+    title: "Cloud Solutions",
+    description:
+      "AWS, Google Cloud, and Azure services. Scalable infrastructure, serverless architectures, and cloud migration strategies.",
+    icon: "fa-cloud",
+    gradient: "from-yellow-600 to-orange-600",
+    link: "/services/cloud-solutions",
+  },
+  {
+    title: "DevOps & Automation",
+    description:
+      "CI/CD pipelines, containerization with Docker, orchestration with Kubernetes, and infrastructure as code.",
+    icon: "fa-cogs",
+    gradient: "from-red-600 to-rose-600",
+    link: "/services/devops",
+  },
+  {
+    title: "E-commerce Solutions",
+    description:
+      "Custom online stores, payment integration, inventory management, and shopping cart solutions using Shopify, WooCommerce, or custom builds.",
+    icon: "fa-shopping-cart",
+    gradient: "from-emerald-600 to-cyan-600",
+    link: "/services/ecommerce",
+  },
+  {
+    title: "SEO & Digital Marketing",
+    description:
+      "Search engine optimization, content strategy, social media marketing, and analytics to boost your online presence.",
+    icon: "fa-chart-line",
+    gradient: "from-violet-600 to-purple-600",
+    link: "/services/seo-marketing",
+  },
+  {
+    title: "IT Consulting",
+    description:
+      "Strategic technology consulting, digital transformation, and IT infrastructure optimization for businesses of all sizes.",
+    icon: "fa-lightbulb",
+    gradient: "from-amber-600 to-orange-600",
+    link: "/services/consulting",
+  },
+  {
+    title: "Cybersecurity",
+    description:
+      "Security audits, penetration testing, compliance solutions, and implementation of robust security protocols.",
+    icon: "fa-shield-alt",
+    gradient: "from-slate-600 to-gray-600",
+    link: "/services/cybersecurity",
+  },
+  {
+    title: "AI & Machine Learning",
+    description:
+      "Custom AI solutions, predictive analytics, natural language processing, and computer vision applications.",
+    icon: "fa-brain",
+    gradient: "from-indigo-600 to-blue-600",
+    link: "/services/ai-ml",
+  },
+];
+---
+
+<section
+  class="relative py-24 overflow-hidden bg-linear-to-t from-blue-800 to-white reveal"
+>
+  <div class="spiral-bg"></div>
+  {/* Decorative background elements */}
+  <div class="absolute inset-0">
+    <div
+      class="absolute top-20 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
+    >
+    </div>
+    <div
+      class="absolute top-40 right-0 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"
+    >
+    </div>
+    <div
+      class="absolute bottom-20 left-20 w-72 h-72 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"
+    >
+    </div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <div class="inline-flex items-center justify-center mb-6">
+        <div
+          class="w-16 h-16 bg-linear-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg"
+        >
+          <i class="fas fa-cubes text-white text-3xl"></i>
+        </div>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span
+          class="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+        >
+          Our Services
+        </span>
+      </h2>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        Comprehensive digital solutions tailored to your business needs. From
+        concept to launch, we deliver excellence at every step.
+      </p>
+    </div>
+
+    {/* Services Grid */}
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
+    >
+      {
+        services.map((service, index) => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            gradient={service.gradient}
+            link={service.link}
+            size="medium"
+            delay={index * 100}
+          />
+        ))
+      }
+    </div>
+
+    {/* Stats Section */}
+    <!-- <div
+      class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-16 border-t border-gray-200"
+    >
+      <div class="text-center reveal">
+        <div
+          class="text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2"
+        >
+          500+
+        </div>
+        <div class="text-gray-600 flex items-center justify-center">
+          <i class="fas fa-check-circle text-green-500 mr-2"></i>
+          Projects Completed
+        </div>
+      </div>
+      <div class="text-center reveal">
+        <div
+          class="text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2"
+        >
+          98%
+        </div>
+        <div class="text-gray-600 flex items-center justify-center">
+          <i class="fas fa-smile text-green-500 mr-2"></i>
+          Client Satisfaction
+        </div>
+      </div>
+      <div class="text-center reveal">
+        <div
+          class="text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2"
+        >
+          24/7
+        </div>
+        <div class="text-gray-600 flex items-center justify-center">
+          <i class="fas fa-headset text-green-500 mr-2"></i>
+          Support Available
+        </div>
+      </div>
+      <div class="text-center reveal">
+        <div
+          class="text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2"
+        >
+          50+
+        </div>
+        <div class="text-gray-600 flex items-center justify-center">
+          <i class="fas fa-users text-green-500 mr-2"></i>
+          Expert Team
+        </div>
+      </div>
+    </div> -->
+
+    {/* CTA Button */}
+    <!-- <div class="text-center mt-16 reveal">
+      <a
+        href="/services"
+        class="inline-flex items-center px-8 py-4 bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+      >
+        <span>Explore All Services</span>
+        <i
+          class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+        ></i>
+      </a>
+    </div> -->
+  </div>
+</section>
+
+<style>
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    33% {
+      transform: translateY(-20px) scale(1.1);
+    }
+    66% {
+      transform: translateY(20px) scale(0.9);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
