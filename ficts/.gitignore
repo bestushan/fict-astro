@@ -25,6 +25,8 @@ pnpm-debug.log*
 
 public/videos/
 
+src/pages/test.astro
+
 # Ignore all video files
 *.mp4
 *.mov
