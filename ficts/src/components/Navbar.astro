@@ -42,7 +42,7 @@ import { Image } from "astro:assets";
           navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-md lg:text-lg font-semibold text-blue-500 hover:text-blue-300 transition-colors duration-200"
+              class="text-md lg:text-lg font-bold uppercase text-blue-500 hover:text-blue-300 transition-colors duration-200 text-shadow-blue-800 text-shadow-xs"
             >
               {link.name}
             </a>
@@ -80,12 +80,12 @@ import { Image } from "astro:assets";
   <!-- Mobile Menu (Hidden by default) -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-2 text-center relative"
+    class="hidden md:hidden bg-white/50 backdrop-blur-md border-b border-gray-100 px-4 pt-2 pb-6 space-y-2 text-center relative"
   >
     <!-- Mobile menu close button-->
     <button
       id="menu-close"
-      class="absolute right-4 top-2 text-blue-400 p-2 focus:outline-none"
+      class="absolute right-4 top-2 text-blue-600 p-2 focus:outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ import { Image } from "astro:assets";
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="block py-3 text-base font-semibold text-blue-600 hover:text-blue border-b border-blue-300 mobile-menu-link"
+          class="block py-3 text-base font-bold text-blue-600 uppercase text-shadow-2xs text-shadow-blue-900 shadow-lg shadow-blue-200 hover:text-blue-300 border-b border-blue-300 mobile-menu-link"
         >
           {link.name}
         </a>

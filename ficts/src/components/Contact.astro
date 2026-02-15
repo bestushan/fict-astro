@@ -23,13 +23,15 @@
 
       <form
         id="contact-form"
+        action="send_mail.php"
+        method="POST"
         class="grid grid-cols-1 gap-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
       >
         <div>
           <label
             for="full-name"
             class="block text-sm md:text-md font-semibold text-blue-950 mb-2 text-justify"
-            >Full Name</label
+            >Full Name <span class="text-blue-600">*</span></label
           >
           <input
             type="text"
@@ -45,7 +47,7 @@
           <label
             for="email"
             class="block text-sm md:text-md font-semibold text-blue-950 mb-2 text-justify"
-            >Email Address</label
+            >Email Address <span class="text-blue-600">*</span></label
           >
           <input
             type="email"
@@ -61,7 +63,7 @@
           <label
             for="message"
             class="block text-sm md:text-md font-semibold text-blue-950 mb-2 text-justify"
-            >Message</label
+            >Message <span class="text-blue-600">*</span></label
           >
           <textarea
             id="message"
@@ -106,6 +108,6 @@
         status.classList.replace("text-blue-600", "text-green-600");
         form.reset();
       }
-    }, 1500);
+    }, 500);
   });
 </script>
