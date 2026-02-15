@@ -14,7 +14,7 @@ import { Image } from "astro:assets";
 ---
 
 <nav
-  class="fixed top-0 left-1/2 -translate-x-1/2 w-full z-50 bg-black/40 backdrop-blur-md border-b border-blue-900/10"
+  class="fixed top-0 left-1/2 -translate-x-1/2 w-full z-50 bg-linear-b from-white/80 to-white/10 backdrop-blur-md border-b border-blue-900/10"
 >
   <div
     class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
@@ -42,7 +42,7 @@ import { Image } from "astro:assets";
           navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-md lg:text-lg font-semibold text-blue-300 hover:text-blue-100 transition-colors duration-200"
+              class="text-md lg:text-lg font-semibold text-blue-500 hover:text-blue-300 transition-colors duration-200"
             >
               {link.name}
             </a>
@@ -57,8 +57,8 @@ import { Image } from "astro:assets";
       </div>
 
       <!-- Mobile Button -->
-      <div class="md:hidden flex justify-center w-full mt-2 md:mt-0">
-        <button id="menu-toggle" class="text-gray-600 p-2">
+      <div class="md:hidden flex fixed w-full mt-2 md:mt-0">
+        <button id="menu-toggle" class="text-blue-300 p-2">
           <svg
             xmlns="http://www.w3.org"
             class="h-6 w-6"
@@ -86,7 +86,7 @@ import { Image } from "astro:assets";
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="block py-3 text-base font-semibold text-gray-700 border-b border-gray-50"
+          class="block py-3 text-base font-semibold text-blue-600 hover:text-blue border-b border-blue-300"
         >
           {link.name}
         </a>

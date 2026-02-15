@@ -4,44 +4,6 @@
 import { Image } from "astro:assets";
 import herobg from "../assets/images/herobg.png";
 // import heroImage from "../assets/images/herobg.png";
-
-const qualities = [
-  {
-    title: "Information Systems",
-    desc: "Seamlessly organize, manage, and optimize your business operations.",
-    color: "text-blue-100",
-  },
-  {
-    title: "Web Apps",
-    desc: "Robust, scalable web solutions custom-tailored for your business goals.",
-    color: "text-blue-200",
-  },
-  {
-    title: "Mobile Apps",
-    desc: "Elegant, high-performance apps designed for every device and platform.",
-    color: "text-blue-300",
-  },
-  {
-    title: "Data Analysis",
-    desc: "Transform raw information into actionable insights with advanced analytics.",
-    color: "text-blue-100",
-  },
-  {
-    title: "Digital Marketing",
-    desc: "Amplify your reach and engagement with cutting-edge online strategies.",
-    color: "text-blue-200",
-  },
-  {
-    title: "Graphic Designing",
-    desc: "Captivating visuals and branding for a memorable digital presence.",
-    color: "text-blue-300",
-  },
-  {
-    title: "IT Consultancy",
-    desc: "Expert guidance to unlock new potential and future-proof your technology.",
-    color: "text-blue-300",
-  },
-];
 ---
 
 <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
@@ -80,15 +42,15 @@ const qualities = [
       >
     </h1>
     <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed">
-      Experience the speed of hard-coded performance. Built for 2026, optimized
-      for humans.
+      Experience the speed of hard-coded performance. Built for future,
+      optimized for humans.
     </p>
     <div class="gap-4">
       <a
-        href="#projects"
-        class="inline-block bg-blue-400 hover:bg-blue-300 hover:-translate-y-1 text-emerald-950 font-bold py-4 rounded-lg shadow-lg active:scale-95 text-center transition-all duration-300 ease-out text-lg px-8"
+        href="#services"
+        class="inline-block bg-blue-400 hover:bg-blue-300 hover:-translate-y-1 text-blue-950 font-bold py-4 rounded-lg shadow-lg active:scale-95 text-center transition-all duration-300 ease-out text-lg px-8"
       >
-        View Projects
+        View Services
       </a>
     </div>
     <!-- </div> -->
@@ -162,6 +124,24 @@ const qualities = [
 </script>
 
 <style>
+  /* Custom blink animation and cursor color for the typewriter */
+  .typewriter-cursor {
+    border-right-width: 4px;
+    border-right-style: solid;
+    border-right-color: #3b82f6; /* Example: blue-800 as the cursor color */
+    animation: blink-cursor 0.8s steps(1) infinite;
+  }
+
+  @keyframes blink-cursor {
+    0%,
+    100% {
+      border-right-color: #3b82f6;
+    }
+    50% {
+      border-right-color: transparent;
+    }
+  }
+
   /* This creates the blinking cursor effect */
   #typewriter {
     animation: blink 0.8s step-end infinite;
