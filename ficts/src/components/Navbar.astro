@@ -58,10 +58,10 @@ import { Image } from "astro:assets";
 
       <!-- Mobile Button -->
       <div class="md:hidden flex fixed w-full mt-2 md:mt-0">
-        <button id="menu-toggle" class="text-blue-300 p-2">
+        <button id="menu-toggle" class="text-blue-600 p-2">
           <svg
             xmlns="http://www.w3.org"
-            class="h-6 w-6"
+            class="h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -80,13 +80,32 @@ import { Image } from "astro:assets";
   <!-- Mobile Menu (Hidden by default) -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-2 text-center"
+    class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-2 text-center relative"
   >
+    <!-- Mobile menu close button-->
+    <button
+      id="menu-close"
+      class="absolute right-4 top-2 text-blue-400 p-2 focus:outline-none"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
     {
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="block py-3 text-base font-semibold text-blue-600 hover:text-blue border-b border-blue-300"
+          class="block py-3 text-base font-semibold text-blue-600 hover:text-blue border-b border-blue-300 mobile-menu-link"
         >
           {link.name}
         </a>
@@ -99,9 +118,32 @@ import { Image } from "astro:assets";
   // Simple "Hard-Coded" logic for mobile menu toggle
   const btn = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("menu-close");
+
+  function hideMenu() {
+    menu?.classList.add("hidden");
+  }
 
   btn?.addEventListener("click", () => {
     menu?.classList.toggle("hidden");
+  });
+
+  // Close button for mobile menu
+  closeBtn?.addEventListener("click", hideMenu);
+
+  // Hide menu after clicking a link (mobile only)
+  // Use event delegation to cover dynamically rendered links
+  menu?.addEventListener("click", function (e) {
+    // Look for links only
+    let el = e.target;
+    while (el && el !== menu) {
+      if (el.classList?.contains("mobile-menu-link")) {
+        // Delay slightly to allow navigation for anchor links
+        setTimeout(hideMenu, 100);
+        break;
+      }
+      el = el.parentElement;
+    }
   });
 
   const nav = document.getElementById("main-nav");
